@@ -1,10 +1,10 @@
 #include <fstream>
-#include <optional>
 #include <fmt/core.h>
 #include <boost/ut.hpp>
+#include "maybe.hh"
 
 template <typename T>
-auto read(std::istream& is) -> std::optional<T> {
+auto read(std::istream& is) -> maybe<T> {
     auto result = T{};
 
     if (is >> result)
@@ -15,13 +15,13 @@ auto read(std::istream& is) -> std::optional<T> {
 
 template <typename T>
 auto read_vector(std::istream& is) -> std::vector<T> {
-    auto result = std::vector<int>{};
+    auto result = std::vector<T>{};
 
-    while(is) {
-        auto value = read<int>(is);
-        if (value)
-            result.emplace_back(*value);
-    }
+    while(is)
+        read<T>(is)
+            .then([&](auto value) {
+                result.emplace_back(value);
+            });
 
     return result;
 }
