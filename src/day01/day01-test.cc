@@ -7,8 +7,8 @@ auto process(I first, I last) {
 
     while (first != last) {
         for (auto part: parts) {
-            if (part + *first == 2020)
-                return part * *first;
+            if (part == 2020 - *first)
+                return (2020 - *first) * *first;
         }
 
         parts.emplace_back(*first);
