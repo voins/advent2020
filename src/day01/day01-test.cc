@@ -7,29 +7,35 @@ auto process(I first, I last) {
 
     if (first == last)
         return 0;
-
-    parts.emplace_back(*first);
-
-    first++;
-    if (first == last)
-        return 0;
-
     for (auto part: parts) {
         if (part + *first == 2020)
             return part * *first;
     }
 
     parts.emplace_back(*first);
-
     first++;
+
+
+
     if (first == last)
         return 0;
-
     for (auto part: parts) {
         if (part + *first == 2020)
             return part * *first;
     }
+    parts.emplace_back(*first);
+    first++;
 
+
+
+    if (first == last)
+        return 0;
+    for (auto part: parts) {
+        if (part + *first == 2020)
+            return part * *first;
+    }
+    parts.emplace_back(*first);
+    first++;
     return 0;
 }
 
