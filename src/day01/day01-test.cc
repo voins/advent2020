@@ -56,5 +56,11 @@ auto main() -> int {
         auto result = process(input.begin(), input.end());
         expect(that % result == 4036);
     };
+
+    "returns correct value from the example"_test = [] {
+        auto input = std::vector<int>{1721, 979, 366, 299, 675, 1456};
+        auto result = process(input.begin(), input.end());
+        expect(that % result == 514579);
+    };
     return 0;
 }
