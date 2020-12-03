@@ -5,37 +5,16 @@ template <typename I>
 auto process(I first, I last) {
     auto parts = std::vector<int>{};
 
-    if (first == last)
-        return 0;
-    for (auto part: parts) {
-        if (part + *first == 2020)
-            return part * *first;
+    while (first != last) {
+        for (auto part: parts) {
+            if (part + *first == 2020)
+                return part * *first;
+        }
+
+        parts.emplace_back(*first);
+        first++;
     }
 
-    parts.emplace_back(*first);
-    first++;
-
-
-
-    if (first == last)
-        return 0;
-    for (auto part: parts) {
-        if (part + *first == 2020)
-            return part * *first;
-    }
-    parts.emplace_back(*first);
-    first++;
-
-
-
-    if (first == last)
-        return 0;
-    for (auto part: parts) {
-        if (part + *first == 2020)
-            return part * *first;
-    }
-    parts.emplace_back(*first);
-    first++;
     return 0;
 }
 
