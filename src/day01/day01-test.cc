@@ -3,29 +3,32 @@
 
 template <typename I>
 auto process(I first, I last) {
+    auto parts = std::vector<int>{};
+
     if (first == last)
         return 0;
 
-    auto part1 = *first;
+    parts.emplace_back(*first);
 
     first++;
     if (first == last)
         return 0;
 
-    if (part1 + *first == 2020)
-        return part1 * *first;
+    for (auto part: parts) {
+        if (part + *first == 2020)
+            return part * *first;
+    }
 
-    auto part2 = *first;
+    parts.emplace_back(*first);
 
     first++;
     if (first == last)
         return 0;
 
-    if (part1 + *first == 2020)
-        return part1 * *first;
-   
-    if (part2 + *first == 2020)
-        return part2 * *first;
+    for (auto part: parts) {
+        if (part + *first == 2020)
+            return part * *first;
+    }
 
     return 0;
 }
