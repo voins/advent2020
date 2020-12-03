@@ -1,17 +1,16 @@
 #include <vector>
+#include <set>
 #include <boost/ut.hpp>
 
 template <typename I>
 auto process(I first, I last) {
-    auto parts = std::vector<int>{};
+    auto parts = std::set<int>{};
 
     while (first != last) {
-        for (auto part: parts) {
-            if (part + *first == 2020)
-                return part * *first;
-        }
+        if (parts.count(2020 - *first))
+            return (2020 - *first) * *first;
 
-        parts.emplace_back(*first);
+        parts.insert(*first);
         first++;
     }
 
