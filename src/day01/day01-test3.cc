@@ -9,21 +9,36 @@ auto process3(I first, I last) {
         return 0;
 
     auto part_a = *first;
-    ++first;
+    auto second = ++first;
 
     if (first == last)
         return 0;
 
     auto parts = std::set<int>{};
 
-    while (first != last) {
-        if (parts.count(2020 - part_a - *first))
-            return (2020 - part_a - *first) * part_a * *first;
+    while (second != last) {
+        if (parts.count(2020 - part_a - *second))
+            return (2020 - part_a - *second) * part_a * *second;
 
-        parts.insert(*first);
-        first++;
+        parts.insert(*second);
+        second++;
     }
     
+    part_a = *first;
+    second = ++first;
+
+    if (first == last)
+        return 0;
+
+    parts = std::set<int>{};
+
+    while (second != last) {
+        if (parts.count(2020 - part_a - *second))
+            return (2020 - part_a - *second) * part_a * *second;
+
+        parts.insert(*second);
+        second++;
+    }
     return 0;
 }
 
@@ -68,6 +83,12 @@ auto main() -> int {
 
     "returns product for input of four numbers, bad number second"_test = [] {
         auto input = std::vector<int>{2, 2000, 3, 2015};
+        auto result = process3(input.begin(), input.end());
+        expect(that % result == 12090);
+    };
+
+    "returns product for input of four numbers, bad number first"_test = [] {
+        auto input = std::vector<int>{2000, 2, 3, 2015};
         auto result = process3(input.begin(), input.end());
         expect(that % result == 12090);
     };
