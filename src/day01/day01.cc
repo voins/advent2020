@@ -31,5 +31,6 @@ auto main() -> int {
     auto is = std::ifstream{INPUT_FILE};
     auto input = read_vector<int>(is);
     fmt::print("{}\n", process(input.begin(), input.end()));
+    fmt::print("{}\n", process3(input.begin(), input.end()));
     return 0;
 }
