@@ -1,4 +1,5 @@
 #include <vector>
+#include <set>
 #include "process.hh"
 #include <boost/ut.hpp>
 
@@ -13,26 +14,15 @@ auto process3(I first, I last) {
     if (first == last)
         return 0;
 
-    auto part_b1 = *first;
-    ++first;
+    auto parts = std::set<int>{};
 
-    if (first == last)
-        return 0;
+    while (first != last) {
+        if (parts.count(2020 - part_a - *first))
+            return (2020 - part_a - *first) * part_a * *first;
 
-    if (part_a + part_b1 + *first == 2020)
-        return part_a * part_b1 * *first;
-
-    auto part_b2 = *first;
-    ++first;
-
-    if (first == last)
-        return 0;
-
-    if (part_a + part_b1 + *first == 2020)
-        return part_a * part_b1 * *first;
-
-    if (part_a + part_b2 + *first == 2020)
-        return part_a * part_b2 * *first;
+        parts.insert(*first);
+        first++;
+    }
     
     return 0;
 }
