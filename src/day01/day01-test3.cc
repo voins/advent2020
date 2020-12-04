@@ -13,14 +13,26 @@ auto process3(I first, I last) {
     if (first == last)
         return 0;
 
-    auto part_b = *first;
+    auto part_b1 = *first;
     ++first;
 
     if (first == last)
         return 0;
 
-    if (part_a + part_b + *first == 2020)
-        return part_a * part_b * *first;
+    if (part_a + part_b1 + *first == 2020)
+        return part_a * part_b1 * *first;
+
+    auto part_b2 = *first;
+    ++first;
+
+    if (first == last)
+        return 0;
+
+    if (part_a + part_b1 + *first == 2020)
+        return part_a * part_b1 * *first;
+
+    if (part_a + part_b2 + *first == 2020)
+        return part_a * part_b2 * *first;
     
     return 0;
 }
@@ -56,6 +68,12 @@ auto main() -> int {
         auto input = std::vector<int>{2, 3, 2014};
         auto result = process3(input.begin(), input.end());
         expect(that % result == 0);
+    };
+
+    "returns product for input of four numbers, bad number third"_test = [] {
+        auto input = std::vector<int>{2, 3, 2000, 2015};
+        auto result = process3(input.begin(), input.end());
+        expect(that % result == 12090);
     };
 
     return 0;
