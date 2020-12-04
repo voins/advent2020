@@ -66,5 +66,11 @@ auto main() -> int {
         expect(that % result == 12090);
     };
 
+    "returns product for input of four numbers, bad number second"_test = [] {
+        auto input = std::vector<int>{2, 2000, 3, 2015};
+        auto result = process3(input.begin(), input.end());
+        expect(that % result == 12090);
+    };
+
     return 0;
 }
