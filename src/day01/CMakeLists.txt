@@ -7,3 +7,7 @@ add_test(day01 day01)
 add_default_executable(day01-test day01-test.cc)
 target_link_libraries(day01-test PRIVATE CONAN_PKG::UT)
 add_test(day01-test day01-test)
+
+add_default_executable(day01-test3 day01-test3.cc)
+target_link_libraries(day01-test3 PRIVATE CONAN_PKG::UT)
+add_test(day01-test3 day01-test3)
